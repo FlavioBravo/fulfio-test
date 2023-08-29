@@ -1,0 +1,15 @@
+.home {
+  &__container {
+    -webkit-font-smoothing: antialiased;
+  }
+  &__main {
+    height: 100vh;
+    margin-left: 256px;
+    padding: 96px 16px 16px 16px;
+    @media screen and (max-width: 480px) {
+      margin-left: 0;
+      padding: 56px 0 0 0;
+      height: auto;
+    }
+  }
+}

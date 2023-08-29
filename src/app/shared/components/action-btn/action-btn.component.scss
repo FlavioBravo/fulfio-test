@@ -1,0 +1,42 @@
+.action {
+    &__wrapper {
+      &-pending {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 12px;
+        background-color: rgb(255 251 235);
+        border: 1px solid rgb(234 179 8);
+        cursor: pointer;
+      }
+      &-resolved {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        padding: 12px;
+        background-color: rgb(236 252 203);
+        cursor: pointer;
+      }
+    }
+    &__label {
+      font-size: 12px;
+      font-weight: 500;
+      &-pending {
+        color: rgb(234 179 8);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      &-resolved {
+        color: rgb(132 204 22);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+  

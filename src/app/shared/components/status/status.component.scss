@@ -1,0 +1,52 @@
+.status {
+  &__wrapper {
+    &-pending {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      padding: 12px;
+      background-color: rgb(254 249 195);
+    }
+    &-resolved {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      padding: 12px;
+      background-color: rgb(236 252 203);
+    }
+  }
+  &__icon {
+    &-pending {
+      display: flex;
+      height: 16px;
+      width: 16px;
+      margin-right: 4px;
+      color: rgb(234 179 8);
+    }
+    &-resolved {
+      display: flex;
+      height: 16px;
+      width: 16px;
+      margin-right: 4px;
+      color: rgb(132 204 22);
+    }
+  }
+  &__label {
+    font-size: 12px;
+    font-weight: 500;
+    &-pending {
+      color: rgb(234 179 8);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    &-resolved {
+      color: rgb(132 204 22);
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+}

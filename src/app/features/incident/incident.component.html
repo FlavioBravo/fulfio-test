@@ -1,0 +1,77 @@
+<div class="incident__container">
+  <div class="incident__tab-wrapper">
+    <ul class="incident__tab-option-box">
+      <li>
+        <a
+          routerLink="/incidencias/en-curso"
+          routerLinkActive="incident__tab-option--active"
+          class="incident__tab-option"
+          aria-current="page"
+          >En curso</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/incidencias/resueltas"
+          routerLinkActive="incident__tab-option--active"
+          class="incident__tab-option"
+          aria-current="page"
+          >Resueltas</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="incident__action-container">
+    <form [formGroup]="searchForm" class="incident__form" (ngSubmit)="search()">
+      <div class="incident__form-wrapper">
+        <div class="incident__input-wrapper">
+          <svg
+            class="incident__icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            ></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          name="email"
+          id="topbar-search"
+          class="incident__input"
+          placeholder="Search"
+          formControlName="search"
+        />
+      </div>
+    </form>
+    <button
+      type="button"
+      class="incident__btn"
+      aria-controls="dropdown-authentication"
+      (click)="openCreateIncidentModal()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="incident__action-icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+
+      <span class="incident__action-lbl">Nueva incidencia</span>
+    </button>
+  </div>
+  <app-incident-list [list]="incidentList" (resolvedClick)="resolveIncident($event)" *ngIf="!changeRoute"></app-incident-list>
+  <router-outlet *ngIf="changeRoute"></router-outlet>
+</div>

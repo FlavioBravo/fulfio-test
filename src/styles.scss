@@ -1,0 +1,11 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+
+/* Overlay backdrop styling */
+.overlay-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

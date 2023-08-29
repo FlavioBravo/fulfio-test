@@ -1,0 +1,74 @@
+<nav class="header__container">
+  <div class="header__wrapper">
+    <div class="header__box" id="header__mobile">
+      <p class="header__title">Incidencias</p>
+    </div>
+    <div class="header__box">
+      <button
+        type="button"
+        class="header__menu"
+        id="user-menu-button"
+        aria-expanded="false"
+        (click)="showToggle()"
+      >
+        <img
+          class="header__img"
+          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+          alt="user photo"
+        />
+        <span class="header__subtitle">Carlos</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="header__icon"
+          *ngIf="!toggle"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="header__icon"
+          *ngIf="toggle"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+      <!-- Dropdown menu -->
+      <div [ngClass]="{ hidden: !toggle }" class="header__menu-box">
+        <div class="header__menu-box__header divider">
+          <span><b>Carlos fulfio</b></span>
+          <span>carlos@fulfio.com</span>
+        </div>
+        <ul class="header__menu-box__body divider" aria-labelledby="dropdown">
+          <li>
+            <a href="#" class="header__menu-box__option">Mi perfil</a>
+          </li>
+          <li>
+            <a href="#" class="header__menu-box__option">Configuración</a>
+          </li>
+        </ul>
+        <ul class="header__menu-box__body" aria-labelledby="dropdown">
+          <li>
+            <a href="#" class="header__menu-box__option">Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <img
+          class="header__img-mobile"
+          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+          alt="user photo"
+        />
+  </div>
+</nav>

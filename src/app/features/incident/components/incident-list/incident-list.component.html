@@ -1,0 +1,162 @@
+<div class="incident-list__table" [ngClass]="{ 'flex-row': isChatOpened }">
+  <div class="incident-list__table-header" *ngIf="!isChatOpened">
+    <div class="incident-list__table-title justify-start w-25">
+      NUMERO DE INCIDENCIA
+    </div>
+    <div class="incident-list__table-title w-50">MENSAJE</div>
+    <div class="incident-list__table-title w-25">ESTADO</div>
+  </div>
+  <div
+    class="incident-list__table-body-wrapper"
+    [ngClass]="{ 'scroll-y': isChatOpened }"
+  >
+    <div
+      class="incident-list__table-body"
+      (click)="openChat(item)"
+      *ngFor="let item of list; trackBy: ItemById"
+      [ngClass]="{ active: item.incident_id === chatItem?.incident_id }"
+    >
+      <div
+        class="incident-list__table-body--left"
+        [ngClass]="{ 'w-25': !isChatOpened, 'w-100': isChatOpened }"
+      >
+        <ng-container *ngIf="!isChatOpened">
+          <p>Incidencia #{{ item?.incident_id }}</p>
+          <span>{{ item.time }}</span>
+          <app-tag
+            [theme]="item.type | lowercase"
+            [text]="item.typeText"
+          ></app-tag>
+        </ng-container>
+        <ng-container *ngIf="isChatOpened">
+          <div class="incident-list__table-col">
+            <p>#{{ item.incident_id }}</p>
+            <app-tag [theme]="item.type | lowercase" [text]="item.typeText"></app-tag>
+          </div>
+          <span>{{ item.time }}</span>
+          <span class="incident-list__table-msg"
+            >Hola Raul! no te preocupes, el paquete aun no ha salido de la
+            planta</span
+          >
+        </ng-container>
+      </div>
+      <div class="incident-list__table-body--center w-50" *ngIf="!isChatOpened">
+        {{ item.message }}
+      </div>
+      <div class="incident-list__table-body--right w-25" *ngIf="!isChatOpened">
+        <app-status
+          [theme]="item.status | lowercase"
+          [text]="item.statusText"
+        ></app-status>
+      </div>
+      <div class="incident-list__table-body--mobile w-100">
+        <div class="incident-list__table-body--mobile-header">
+          <div class="incident-list__table-body--mobile-title">
+            <span>{{ item.time }}</span>
+            <p>Incidencia #{{ item.incident_id }}</p>
+          </div>
+          <app-tag [theme]="item.type | lowercase" [text]="item.typeText"></app-tag>
+        </div>
+        <div class="incident-list__table-body--mobile-body">
+          <span>{{ item.message }}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="incident-list__chat" [ngClass]="{'expanded': isChatOpened}">
+    <div class="incident-list__chat-header">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        (click)="closeChat()"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
+        />
+      </svg>
+      <div class="incident-list__chat-header-title">
+        <p>Incidencia #{{ chatItem?.incident_id }}</p>
+        <span>{{ chatItem?.time }}</span>
+      </div>
+      <app-tag [theme]="chatItem?.type | lowercase" [text]="chatItem?.typeText"></app-tag>
+    </div>
+    <div class="incident-list__chat-body">
+      <div *ngFor="let text of textMessages" [ngClass]="text?.type === 'client' ? 'incident-list__chat-message' : 'incident-list__chat-message-reverse'">
+        <div [ngClass]="text?.type === 'client' ? 'incident-list__chat-message__text' : 'incident-list__chat-message-reverse__text'">
+          <p>{{text?.name}}</p>
+          <span [innerHTML]="text?.message"></span>
+        </div>
+        <img [src]="text?.img" alt="user chat image">
+      </div>
+      <app-action-btn
+          *ngIf="chatItem?.status !== 'RESOLVED'"
+          theme="pending"
+          text="Resolver incidencia"
+          (click)="handleClick()"
+        ></app-action-btn>
+    </div>
+    <div class="incident-list__chat-footer">
+      <form>
+        <textarea
+          name="textarea-chat"
+          id="textarea-chat"
+          rows="1"
+          placeholder="Escribe mensaje ..."
+          class="incident-list__chat-footer__form-textarea"
+        ></textarea>
+        <button type="button" class="incident-list__chat-footer__form-option">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="incident-list__chat-footer__form-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"
+            />
+          </svg>
+        </button>
+        <button type="submit" class="incident-list__chat-footer__form-send">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="incident-list__chat-footer__form-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+            />
+          </svg>
+
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
