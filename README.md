@@ -1,6 +1,10 @@
 # FulfioTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0 and Node version 16.16.0
+
+## Install Dependencies
+
+Run `npm install` to install packages to the project.
 
 ## Development server
 
